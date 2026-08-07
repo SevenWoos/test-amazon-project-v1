@@ -58,7 +58,7 @@ products.forEach((product) => {
 // Data Attribute lets you attach additonal information to an element. It has to use KEBAB CASE. Concerts to CAMEL CASE when accessed in JS. For example, data-product-id becomes productId in JS.
 
 document.querySelector('.js-products-grid')
-.innerHTML = productsHTML.innerHTML = productsHTML;
+.innerHTML = productsHTML;
 
 document.querySelectorAll('.js-add-to-cart')
   .forEach((button) => {

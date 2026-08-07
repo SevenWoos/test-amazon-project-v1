@@ -103,5 +103,9 @@ document.querySelectorAll('.js-add-to-cart')
 
       // 13k. Add class to the message element using .classList.add().
       addedMessage.classList.add('added-to-cart-visible');
+      
+      setTimeout(() => {
+        addedMessage.classList.remove('added-to-cart-visible');
+      }, 2000);
     });
 });

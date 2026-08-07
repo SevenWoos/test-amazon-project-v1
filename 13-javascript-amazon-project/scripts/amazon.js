@@ -97,5 +97,8 @@ document.querySelectorAll('.js-add-to-cart')
 
       document.querySelector('.js-cart-quantity')
         .innerHTML = cartQuantity;
+
+      // 13j. Use DOM to get the added messsage for the product.
+      const addedMessage = document.querySelector(`.js-added-to-cart-${productId}`); 
     });
 });

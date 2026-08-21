@@ -1,0 +1,13 @@
+# Lesson 14: Modules
+
+* type="module" attribute lets you get variables out of OUTSIDE files.
+  - EX: <script type="module" src="scripts/amazon.js"></script>
+
+  - EX: export const cart = [];
+
+  - EX: import {cart} from '../data/cart.js';
+
+
+* Modules only work in LIVE SERVER.
+
+* 

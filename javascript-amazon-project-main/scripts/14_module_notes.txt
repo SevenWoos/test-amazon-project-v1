@@ -10,4 +10,9 @@
 
 * Modules only work in LIVE SERVER.
 
-* 
+* To remove an element from page, use the DOM.
+  - Use the DOM to get the element we want to remove.
+
+  - Next, use the .remove() method.
+
+  - EX: 

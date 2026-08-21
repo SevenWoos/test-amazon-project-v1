@@ -65,7 +65,9 @@ document.querySelector('.js-products-grid')
 document.querySelectorAll('.js-add-to-cart')
   .forEach((button) => {
     button.addEventListener('click', () => {
-      const productId = button.dataset.productId;
+      // const productId = button.dataset.productId;
+      // Use shorthand destructuring to get the productId from the button's dataset.
+      const {productId} = button.dataset;
 
       let matchingItem;
 

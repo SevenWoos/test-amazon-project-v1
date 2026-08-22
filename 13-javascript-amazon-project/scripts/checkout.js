@@ -111,3 +111,14 @@ document.querySelectorAll('.js-delete-link')
       container.remove();
     });
 });
+
+
+// Calculate cart quantity and display it in checkout.
+let cartQuantity = 0;
+
+cart.forEach((cartItem) => {
+  cartQuantity += cartItem.quantity;
+});
+
+document.querySelector('.js-return-to-home-link')
+  .innerHTML = `${cartQuantity} items`;

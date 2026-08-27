@@ -96,3 +96,17 @@ document.querySelectorAll('.js-add-to-cart')
        }, 2000);
     });
 });
+
+updatePageCartQuantity();
+
+// 14d. Update the Amazon Page CartQuantity when it loads.
+function updatePageCartQuantity() {
+  let cartQuantity = 0;
+
+  cart.forEach((cartItem) => {
+    cartQuantity += cartItem.quantity;
+  });
+
+  document.querySelector('.js-page-cart-quantity')
+    .innerHTML = cartQuantity;
+};

@@ -150,5 +150,7 @@ document.querySelectorAll('.js-save-link')
       // 14k. Get the quantity from clicking save.
       const quantityInput = document.querySelector(`.js-quantity-input-${productId}`);
       const newQuantity = Number(quantityInput.value);
+
+      updateQuantity(productId, newQuantity);
     });
 });

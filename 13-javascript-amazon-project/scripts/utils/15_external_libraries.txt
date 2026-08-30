@@ -1,0 +1,59 @@
+# Lesson 15: External Libraries
+
+* External Libraries = code that is outside of our project created by other devs that can be used publicly.
+  - Loaded from the Internet.
+
+  - Generally we load the external libraries FIRST.
+
+  - Load them with JS modules to avoid naming conflicts.
+    - Modules will contain the code WITHIN A FILE.
+
+    - Use an ESM(EcmaScript Module) Version.
+
+  - EX:
+    <script src="https://unpkg.com/supersimpledev@1.0.1/hello.js"></script>
+    <script type="module" src="scripts/checkout.js"></script>
+
+  - EX: https://unpkg.com/supersimpledev@1.0.1/hello.js
+
+  - EX: DayJS Library
+    - returns a dayjs object
+      - console.log(dayjs());
+
+* Minification: JS code that has been compressed. Makes it faster to load the code from the Internet, since code is smaller.
+  - Extra spaces removed.
+
+  - Variable names shortened to 1 letter.
+
+
+* DayJS Library
+  - EX: returns a dayjs object
+    - console.log(dayjs());
+
+  - To calculate, use the add() function. Takes 2 parameters(quantity, and type of time).
+    - EX: (adding 7 days)
+      - const today = dayjs();
+        today.add(7, 'days');
+      
+  - format() tells DayJS what kind of format we want for the date.
+    - EX: deliveryDate.format('dddd');
+
+    - EX: console.log(deliveryDate.format('dddd, MMMM D'));
+
+
+* Default Export
+  - export default; makes it so we don't have to include the curly brackets when exporting.
+
+  - Each file can only have ONE default export.
+
+  - EX: export default formatCurrency;
+        import dayjs from 'https://unpkg.com/supersimpledev@8.5.0/dayjs/esm/index.js';
+
+* We will save the deliverytime options data SEPARATELY instead of in the cart object. To avoid duplication.
+  - Use an ID that points to the DELIVERY OPTION.
+
+* Clear our original cart from local storage, so it uses the default values we set up.
+  - localStorage.removeItem('cart');
+
+* To remove any bad data from local storage in case of error.
+  - EX: localStorage.clear();

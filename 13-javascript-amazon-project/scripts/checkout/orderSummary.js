@@ -189,6 +189,9 @@ export function renderOrderSummary() {
         quantityLabel.innerHTML = newQuantity;
 
         updateCartQuantity();
+
+        // Regenerate the Payment Summary HTML when updating and saving the delivery options.
+        renderPaymentSummary();
       });
   });
 

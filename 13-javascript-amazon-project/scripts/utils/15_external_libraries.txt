@@ -20,7 +20,7 @@
     - returns a dayjs object
       - console.log(dayjs());
 
-* Minification: JS code that has been compressed. Makes it faster to load the code from the Internet, since code is smaller.
+* Minification: JS code that has been compressed. Maked it faster to load the code from the Internet, since code is smaller.
   - Extra spaces removed.
 
   - Variable names shortened to 1 letter.
@@ -57,3 +57,18 @@
 
 * To remove any bad data from local storage in case of error.
   - EX: localStorage.clear();
+
+
+* Model-View-Controller (MVC): method where we update the data and then regenerate all the HTML. Design pattern.
+  - Many JavaScript frameworks are based on MVC.
+  
+  - Model = saves and manages the data.
+
+  - View = takes the data and displays it on the page.
+    - EX: code that takes our data and generates the HTML.
+  
+  - Controller = runs some code when we interact with the page(view). It then updates the model.
+    - EX: event listeners that trigger an action when we interact with the page.
+
+    - Use updated model to regenerate the view.
+

@@ -17,4 +17,9 @@
 
   - SpecRunner.html loads all of the tests.
 
-  - 
+* Mocks = lets you replace method with a fake version. Use spyOn.
+
+  - EX: Mock 'setItem' so our specs do not affect the actual 'cart'.
+    - spyOn(localStorage, 'setItem');
+
+* 

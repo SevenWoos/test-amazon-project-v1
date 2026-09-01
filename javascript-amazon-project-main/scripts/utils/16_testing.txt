@@ -9,3 +9,7 @@
 
 * Test Suite = group of RELATED tests.
 
+* Testing Framework = external library that helps us write tests easier.
+  - EX: Jasmine
+
+* 

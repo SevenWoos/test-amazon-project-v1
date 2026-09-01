@@ -1,0 +1,11 @@
+# Lesson 16: Testing
+
+* Automated Testing = using code to test code. No manual testing needed.
+
+* Generally we create 2 types of test cases.
+  - Basic Test Cases = checks that the code is working.
+
+  - Edge Cases = test code with tricky values and scenarios on the EDGE of what our code can handle.
+
+* Test Suite = group of RELATED tests.
+

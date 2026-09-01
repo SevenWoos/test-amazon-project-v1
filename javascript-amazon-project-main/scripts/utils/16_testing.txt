@@ -12,4 +12,9 @@
 * Testing Framework = external library that helps us write tests easier.
   - EX: Jasmine
 
-* 
+* Jasmine Testing Framework.
+  - https://jasmine.github.io/api/5.1/global
+
+  - SpecRunner.html loads all of the tests.
+
+  - 

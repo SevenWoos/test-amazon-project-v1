@@ -22,4 +22,9 @@
   - EX: Mock 'setItem' so our specs do not affect the actual 'cart'.
     - spyOn(localStorage, 'setItem');
 
-* 
+* Unit Test = tests 1 piece of the code.
+
+* Integration Test = tests many units/pieces of code working together.
+
+* Hooks = lets us run some code for each test.
+  - beforeEach hook runs a function before each spec.

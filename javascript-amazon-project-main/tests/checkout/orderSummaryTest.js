@@ -3,9 +3,11 @@ import {loadFromStorage, cart} from '../../data/cart.js';
 
 // Integration Test = tests many units/pieces of code working together.
 describe('test suite: renderOrderSummary', () => {
+  // Move these variables outside of the beforeEach hook so they are accessible to all specs, and within scope.
   const productId1 = 'e43638ce-6aa0-4b85-b27f-e1d07eb678c6';
   const productId2 = '15b6fc6f-327a-4ec4-896f-486349e85a3d';
   
+  // beforeEach hook runs a function before each spec.
   beforeEach(() => {
     // Mock 'setItem' so our specs do not affect the actual 'cart'.
     spyOn(localStorage, 'setItem');

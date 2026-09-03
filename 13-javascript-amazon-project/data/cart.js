@@ -113,8 +113,13 @@ export function updateDeliveryOption(productId, deliveryOptionId) {
   cart.forEach((cartItem) => {
     if (productId === cartItem.productId) {
       matchingItem = cartItem;
-    }
+    };
   });
+
+  // Case where we have an invalid productId NOT in the cart(we cannot update its delivery option), do nothing.
+  if (!matchingItem) {
+    return;
+  };
 
   matchingItem.deliveryOptionId = deliveryOptionId;
 

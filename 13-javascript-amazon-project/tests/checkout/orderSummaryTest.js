@@ -56,6 +56,15 @@ describe('test suite: renderOrderSummary', () => {
     expect(
       document.querySelector(`.js-product-quantity-${productId2}`).innerText
     ).toContain('Quantity: 1');
+
+    // Check that the product name is displayed correctly.
+    expect(
+      document.querySelector(`.js-product-name-${productId1}`).innerText
+    ).toEqual('Black and Gray Athletic Cotton Socks - 6 Pairs');
+
+    expect(
+      document.querySelector(`.js-product-name-${productId2}`).innerText
+    ).toEqual('Intermediate Size Basketball');
   });
 
   // Check delete links work
@@ -79,5 +88,10 @@ describe('test suite: renderOrderSummary', () => {
     // Is cart array updated.
     expect(cart.length).toEqual(1);
     expect(cart[0].productId).toEqual(productId2);
+
+    // Check that the product name is displayed correctly.
+    expect(
+      document.querySelector(`.js-product-name-${productId2}`).innerText
+    ).toEqual('Intermediate Size Basketball');
   });
 });

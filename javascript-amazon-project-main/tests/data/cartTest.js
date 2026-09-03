@@ -1,10 +1,13 @@
 import {addToCart, cart, loadFromStorage} from '../../data/cart.js';
 
 describe('test suite: addToCart', () => {
-  it('adds an existing product to the cart', () => {
+  // beforeEach hook runs before each spec in this test suite. It is used to set up the environment for each test.
+  beforeEach(() => {
     // Mock 'setItem' so our specs do not affect the actual 'cart'.
     spyOn(localStorage, 'setItem');
+  });
 
+  it('adds an existing product to the cart', () => {
     // Mock localStorage to already have an existing product.
     spyOn(localStorage, 'getItem').and.callFake(() => {
       return JSON.stringify([{
@@ -30,9 +33,6 @@ describe('test suite: addToCart', () => {
   });
 
   it('adds a new product to the cart', () => {
-    // Mock 'setItem' so our specs do not affect the actual 'cart'.
-    spyOn(localStorage, 'setItem');
-
     // Mocks = lets you replace method with a fake version. Use spyOn.
 
     // Create fake version of 'getItem' we can customize with an empty cart. This will override the real getItem method.

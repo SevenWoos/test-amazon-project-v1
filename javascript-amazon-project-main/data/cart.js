@@ -1,3 +1,5 @@
+import {validDeliveryOption} from "./deliveryOptions.js";
+
 export let cart;
 
 // export let cart = JSON.parse(localStorage.getItem('cart'));
@@ -118,6 +120,11 @@ export function updateDeliveryOption(productId, deliveryOptionId) {
 
   // Case where we have an invalid productId NOT in the cart(we cannot update its delivery option), do nothing.
   if (!matchingItem) {
+    return;
+  };
+
+  // Case where we have an invalid deliveryOptionId. Do nothing.
+  if (!validDeliveryOption(deliveryOptionId)) {
     return;
   };
 

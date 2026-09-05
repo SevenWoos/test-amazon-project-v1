@@ -12,3 +12,55 @@
 
   * Private Methods are methods that can only be used inside a class.
     EX: #loadFromStorage();
+
+
+* Inheritance: child class INHERITS attributes and behaviors from a parent class.
+  - EX: Clothing class inherits from Product class.
+    - Clothing class has its onw specific properties like a size chart.
+
+  - EX: class Clothing extends Product
+
+  - EX(Tshirt is a more specific type of Product class):
+    - // Clothing class inherits from Product class.
+      class Clothing extends Product {
+      };
+
+      const tshirt = new Clothing({
+          id: "83d4ca15-0f35-48f5-b7a3-1ea210004f2e",
+          image: "images/products/adults-plain-cotton-tshirt-2-pack-teal.jpg",
+          name: "Adults Plain Cotton T-Shirt - 2 Pack",
+          rating: {
+            stars: 4.5,
+            count: 56
+          },
+          priceCents: 799,
+          keywords: [
+            "tshirts",
+            "apparel",
+            "mens"
+          ],
+          type: "clothing",
+          sizeChartLink: "images/clothing-size-chart.png"
+        });
+      console.log(tshirt);
+      console.log(tshirt.getPrice());
+
+* Discrimimator Property = tells us what class we should convert to.
+  - EX: type: "clothing"
+
+* Polymorphism = using a method W/O knowing the class.
+  - EX: When we call extraInfoHTML(), we don't know if the product is a Product class or a Clothing class at the moment.
+  - ${product.extraInfoHTML()}
+
+* Method Overriding = a child class overrides the parent's implementation of a method with its own specific implementation.
+  - EX: 
+      extraInfoHTML() {
+        return `
+          <a href="${this.sizeChartLink}" target="_blank">
+            Size Chart
+          </a>
+        `;
+      };
+
+* If we wanted the child class to use the parent's method.
+  - EX: super.extraInfoHTML();

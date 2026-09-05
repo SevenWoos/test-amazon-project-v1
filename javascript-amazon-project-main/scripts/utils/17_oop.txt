@@ -7,4 +7,8 @@
 * Class = used to generate objects.
   - Object Generator
 
-* 
+* Private Property that can only be used inside this class.
+  EX: #localStorageKey;
+
+  * Private Methods are methods that can only be used inside a class.
+    EX: #loadFromStorage();

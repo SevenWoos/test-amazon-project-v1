@@ -4,4 +4,7 @@
 
 * Method = function inside an object.
 
+* Class = used to generate objects.
+  - Object Generator
+
 * 

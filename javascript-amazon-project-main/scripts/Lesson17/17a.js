@@ -1,17 +1,18 @@
 class Car {
-  brand;
-  model;
+  // Private properties CANNOT be accessed in child class.
+  #brand;
+  #model;
 
   speed = 0;
   isTrunkOpen = false;
 
   constructor(carDetails) {
-    this.brand = carDetails.brand;
-    this.model = carDetails.model;
+    this.#brand = carDetails.brand;
+    this.#model = carDetails.model;
   }
 
   displayInfo() {
-    console.log(`${this.brand} ${this.model}, Speed: ${this.speed} km/h, Trunk: ${this.isTrunkOpen}`);
+    console.log(`${this.#brand} ${this.#model}, Speed: ${this.speed} km/h, Trunk: ${this.isTrunkOpen}`);
   }
 
   // Increases the speed by 5.
@@ -126,3 +127,8 @@ raceCar.displayInfo();
 raceCar.brake();
 raceCar.closeTrunk();
 raceCar.displayInfo();
+
+// We should not be able to change the private properties.
+car1.brand = 'Honda';
+console.log(car1.brand);
+car1.displayInfo();

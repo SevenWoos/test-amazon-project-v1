@@ -64,3 +64,42 @@
 
 * If we wanted the child class to use the parent's method.
   - EX: super.extraInfoHTML();
+
+
+* new Date() = built-in class that generates an object representing the current date.
+  - EX: 
+    const date = new Date();
+    console.log(date);
+    console.log(date.toLocaleTimeString());
+
+* No object for "this" to point to, so it will be undefined.
+  - EX: console.log(this);
+
+* No object for "this" to point to, so it will be undefined since object has NOT been created yet.
+  - EX: 
+      const object2 = {
+        a: 2, 
+        b: this.a
+      };
+
+* No object for "this" to point to, so it will be undefined.
+  - EX: 
+      function logThis() {
+        console.log(this);
+      };
+      logThis();
+
+  - EX: call() sets value of "this". Prints 'hello'
+      logThis.call('hello');
+
+* Arrow functions do NOT change value of 'this'.
+  - EX: 
+      const object3 = {
+        method: () => {
+          // 'this' = undefined
+          console.log(this);
+        }
+      };
+      object3.method();
+
+* 

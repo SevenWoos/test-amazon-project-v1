@@ -132,3 +132,10 @@ raceCar.displayInfo();
 car1.brand = 'Honda';
 console.log(car1.brand);
 car1.displayInfo();
+
+
+// Making the speed property PRIVATE breaks the code.
+// A child class canNOT access a private property.
+console.log(raceCar.model);
+console.log(raceCar.speed);
+console.log(car2.model);

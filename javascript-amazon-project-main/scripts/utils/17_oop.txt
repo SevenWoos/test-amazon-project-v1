@@ -1,0 +1,7 @@
+# Lesson 17: Object Oriented Programming
+
+* OOP = organizes our code into objects.
+
+* Method = function inside an object.
+
+* 

@@ -102,3 +102,18 @@
 
 * When we type a URL in our browser, it sends a GET request to that URL.
   - Displays response on page, like images.
+
+* Callback = function to run in the future. 
+  - Allows us to wait for HTTP request to finish first, and for response to come back.
+
+* Using an Anonymous Function as a callback.
+  - Anonymous Function = a function without a name.
+  
+  - EX:
+    loadProducts(() => {
+      renderCheckoutHeader();
+      renderOrderSummary();
+      renderPaymentSummary();
+    });
+
+* 

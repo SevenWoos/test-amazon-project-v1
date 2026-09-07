@@ -1,0 +1,104 @@
+# Lesson 18: Intro to Backend
+
+* Backend = another computer that manages the data of a website.
+  - EX: Amazon 
+    - Our computer(frontend webpage that sees and interact with products) communicates with a second computer owned by Amazon by sending the order info.
+    - Amazon computer(backend) manages data of website.
+
+* Messages can be sent between computers using HTTP(HyperText Transfer Protocol). 
+  - EX: HTTP message can attach info like Amazon orders.
+
+* Send a HTTP message using JavaScript. Use built-in class: XMLHttpRequest.
+  - EX: const xhr = new XMLHttpRequest();
+
+* To locate another computer on the Internet, we need a URL.
+
+* Uniform Resource Locator(URL) = address for the Internet, that helps us locate another computer. Starts with "https" then domain name.
+  - "https" in front means we're using HTTPS to communicate with this computer.
+
+  - 's' = secure version of HTTP.
+
+  - EX: https://amazon.com
+    - This points to ONE of Amazon's backend computers.
+
+* 2 parameters = type of HTTP message(GET, POST, PUT, DELETE), where to send HTTP message(URL address that helps locate another computer on the Internet).
+  - EX: xhr.open('GET', 'https://supersimplebackend.dev');
+
+
+* After sending HTTPS request, open inspect element, then "Network" tab.
+  - "Headers" dropdown tell us the detaisla dn type of the request we sent.
+
+  - "Response" dropdown shows us the backend's response.
+
+  - "Preview: dropdown takes the response and displays it in readable format.
+
+
+* Request-Response Cycle
+  - 1 request, 1 response.
+
+  - Our computer sends a message(REQUEST) to request something, to backend.
+
+  - When the backend receives our request, it will send a HTTP message back to us(RESPONSE).
+
+
+* We can get the response back in our CODE, rather than use the "Network" tab.
+  - Response is NOT available right away since it takes time to send data. So it will be undefined.
+    - xhr.send() is ASYNC CODE, so it won't wait for resposne before moving onto next line.
+
+  - We need to WAIT for the response to come back.
+
+  - Set up event listener FIRST, and then send the request.
+
+  - EX:
+    // Use this to WAIT for response to come back.
+    xhr.addEventListener('load', () => {
+      // Response is NOT available right away since it takes time to send data. So it will be undefined.
+      console.log(xhr.response);
+    });
+
+
+* We can send different messages/responses using DIFFERENT URL paths.
+  - EX: 'hello' at the end of url
+    - 'https://supersimplebackend.dev/hello'
+  
+  - EX: 'products/first' at the end of url
+    - 'https://supersimplebackend.dev/products/first'
+  
+
+* Backend only supports a certain SET of URL paths, when we build one.
+
+* Sending an unsupported URL path will lead to an error.
+  - backend-practice.js:25  GET https://supersimplebackend.dev/not-supported 404 (Not Found)
+
+  - EX: xhr.open('GET', 'https://supersimplebackend.dev/not-supported');
+
+* Status code that starts with '4' or '5' = FAILED RESPONSE.
+  - '4' = OUR problem, we sent the request to an unsupported URL path.
+
+  - '5' = BACKEND's problem. Maybe backend crashed.
+
+* Status code that starts with '2' = SUCCESSFUL.
+
+* Can also find status code in "Console" --> "Network" --> "Headers".
+
+
+* Some backends provide a documentation page on which URL paths are SUPPORTED(Backend API).
+
+* Backend can response with DIFFERENT types of data.
+  - "Console" --> "Network" --> "Headers" --> "Response Headers" --> "Content-Type"
+
+  - Text
+    - EX: xhr.open('GET', 'https://supersimplebackend.dev/hello');
+
+  - JSON. Can use JSON .parse to convert back to JavaScript objects.
+    - EX: xhr.open('GET', 'https://supersimplebackend.dev/products/first');
+
+  - HTML
+    - EX: xhr.open('GET', 'https://supersimplebackend.dev/documentation');
+
+  -Images
+    - EX: xhr.open('GET', 'https://supersimplebackend.dev/images/apple.jpg');
+
+
+* When we type a URL in our browser, it sends a GET request to that URL.
+  - Displays response on page, like images.

@@ -108,12 +108,22 @@
 
 * Using an Anonymous Function as a callback.
   - Anonymous Function = a function without a name.
-  
+
   - EX:
     loadProducts(() => {
       renderCheckoutHeader();
       renderOrderSummary();
       renderPaymentSummary();
+    });
+
+* beforeAll() hook runs code before everything else.
+
+* done() function = function in Jasmine that waits for some code to finish. Lets us control when we go to the next step.
+  - EX:
+    beforeAll((done) => {
+      loadProducts(() => {
+        done();
+      });
     });
 
 * 

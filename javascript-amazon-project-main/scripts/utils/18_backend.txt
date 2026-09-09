@@ -184,4 +184,72 @@
 * fetch() makes HTTP request. Default is GET. Returns a promise directly.
   - Uses promsie to get response instead of a callback.
 
+
+* Async Await = Shortcut for Promises.
+  - Async makes a function return a promise.
+
+  - EX: ('load page' --> 'next step' --> 'value2')
+    // Async Await = Shortcut for Promises.
+    // Async makes a function return a promise.
+    async function loadPage() {
+      console.log('load page');
+      return 'value2';
+    };
+    loadPage().then((value) => {
+      console.log('next step');
+      console.log(value);
+    });
+
+* Old way of waiting for a promise to finish.
+  - EX: 
+      loadProductsFetch().then(() => {
+        console.log('finish loading products');
+      });
+
+* Use AWAIT.
+
+* Await lets you write async code like normal code. Can only be used inside ASYNC function and on PROMISES.
+  - EX ('load page' --> 'load products' --> 'next step' --> 'value2):
+    async function loadPage() {
+      console.log('load page');
+      // Await lets you write async code like normal code. Can only be used inside async function and on PROMISES.
+      await loadProductsFetch();
+      return 'value2';
+    };
+    loadPage().then((value) => {
+      console.log('next step');
+      console.log(value);
+    });
+
+* Async Await Example('load products' --> 'load cart')
+    async function loadPage() {
+      // Await lets you write async code like normal code. Can only be used inside async function and on PROMISES.
+      await loadProductsFetch();
+
+      // Load cart
+      await new Promise((resolve) => {
+        loadCart(() => {
+          resolve();
+        });
+      });
+
+      // Render page after loading products and cart.
+      renderCheckoutHeader();
+      renderOrderSummary();
+      renderPaymentSummary();
+
+    };
+    loadPage();
+
+* CANNOT use await in an INNER FUNCTION.
+  - EX:
+    async function outerFunction() {
+      console.log('hello');
+
+      // innerFunction has to be made "async"
+      function innerFunction() {
+        await loadProductsFetch();
+      };
+    };
+
 * 

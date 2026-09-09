@@ -181,4 +181,7 @@
     });
 
 
+* fetch() makes HTTP request. Default is GET. Returns a promise directly.
+  - Uses promsie to get response instead of a callback.
+
 * 

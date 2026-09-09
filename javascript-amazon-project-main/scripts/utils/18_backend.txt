@@ -126,4 +126,59 @@
       });
     });
 
+* Promises = better way to handle asynchronous code. Similar to done(). Lets us wait for code to finish before moving to next step. Helps avoid nesting and keeps code flat.
+  - Has parameter "resolve"
+
+  - "resolve" is a function, similar to Jasmine's done() function. It lets us control when to go to the next step.
+
+  - EX: ('start promise' --> 'load products' --> 'finish loading' --> 'next step')
+    new Promise((resolve) => {
+      console.log('start promise');
+      loadProducts(() => {
+        // resolve parameter = function that lets us control when to go to the next step.
+        console.log('finish loading');
+        resolve();
+      });
+    }).then(() => {
+      console.log('next step');
+    });
+
+  
+  - EX: (Loading the products from backend with promise)
+    new Promise((resolve) => {
+      loadProducts(() => {
+        resolve();
+      });
+    }).then(() => {
+      renderCheckoutHeader();
+      renderOrderSummary();
+      renderPaymentSummary();
+    });
+
+
+* Multiple callbacks = a lot of nesting(code inside code).
+
+
+* promise.all() lets us run multiple promises at the SAME TIME, and wait for all of them to finish. Use an array of promises.
+  - EX: 
+    Promise.all([
+      new Promise((resolve) => {
+        loadProducts(() => {
+          resolve('value1');
+        });
+      }), 
+
+      new Promise((resolve) => {
+        loadCart(() => {
+          resolve();
+        });
+      })
+
+    ]).then(() => {
+      renderCheckoutHeader();
+      renderOrderSummary();
+      renderPaymentSummary();
+    });
+
+
 * 

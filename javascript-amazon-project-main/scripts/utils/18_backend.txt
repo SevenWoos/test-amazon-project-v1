@@ -252,4 +252,109 @@
       };
     };
 
+* Error Handling = when sending HTTP requests, we could get unexpected errors.
+  - Use catch for error handling.
+
+  - EX:
+    export function loadProducts(fun) {
+      const xhr = new XMLHttpRequest();
+
+      xhr.addEventListener('load', () => {
+        products = JSON.parse(xhr.response).map((productDetails) => {
+        if (productDetails.type === 'clothing') {
+          return new Clothing(productDetails);
+        } else if(productDetails.type === 'appliance') {
+          return new Appliance(productDetails);
+        };
+
+        return new Product(productDetails);
+        });
+
+        console.log('load products');
+
+        // Wait for HTTP request to finish and then run callback function to render products.
+        // Callback = function to run in the future.
+        fun();
+
+        // Setup a separate callback for error handling.
+        xhr.addEventListener('error', (error) => {
+          console.log('Unexpected error. Please try again later.');
+        });
+      });
+
+      xhr.open('GET', 'https://error.supersimplebackend.dev/products');
+      xhr.send();
+    };
+    loadProducts();
+
+
+* Try and catch for error handling. Can be used in normal code and async code.
+
+* Try contains code that could cause an error.
+
+* Catch catches and handles error.
+
+* try and catch Example 
+  - EX: 
+      async function loadPage() {
+        // Try and catch for error handling.
+        // Try contains code that could cause an error.
+      try {
+        // throw() manually creates an error. Value gets saved in catch() parameter.
+        // throw 'error1';
+
+        await loadProductsFetch();
+
+        // Load cart
+        const value = await new Promise((resolve) => {
+          loadCart(() => {
+            resolve('value3');
+          });
+        });
+
+        // Catches and handles error.
+      } catch (error) {
+        console.log('Unexpected error. Please try again later.');
+      };
+        // Render page after loading products and cart.
+        renderCheckoutHeader();
+        renderOrderSummary();
+        renderPaymentSummary();
+
+      };
+      loadPage();
+
+* reject() parameter in Promise lets you create an error in the future.
+
+  - EX:
+      async function loadPage() {
+      try {
+        // throw() manually creates an error. Value gets saved in catch() parameter.
+        // throw 'error1';
+
+        await loadProductsFetch();
+
+        // Load cart
+        // reject() parameter in Promise lets you create an error in the future.
+        const value = await new Promise((resolve, reject) => {
+          // throw 'error2';
+          loadCart(() => {
+            reject('error3');
+            // resolve('value3');
+          });
+        });
+
+      } catch (error) {
+        console.log('Unexpected error. Please try again later.');
+      };
+
+        // Render page after loading products and cart.
+        renderCheckoutHeader();
+        renderOrderSummary();
+        renderPaymentSummary();
+
+      };
+      loadPage();
+
+
 * 

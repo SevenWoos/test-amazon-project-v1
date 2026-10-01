@@ -70,6 +70,8 @@ document.querySelectorAll('.js-add-to-cart')
           matchingItem = item;
         };
       });
+
+      const quantitySelector = document.querySelector(`.js-quantity-selector-${productId}`);
       
       if (matchingItem) {
         matchingItem.quantity += 1;

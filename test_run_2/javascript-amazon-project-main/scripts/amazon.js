@@ -70,8 +70,10 @@ document.querySelectorAll('.js-add-to-cart')
       cart.forEach((item) => {
         if (productId == item.productId) {
           matchingItem = item;
-        }
+        };
       });
+
+      const quantitySelector = document.querySelector(`.js-quantity-selector-${productId}`);
 
       if (matchingItem) {
         matchingItem.quantity += 1;

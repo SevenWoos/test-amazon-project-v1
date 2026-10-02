@@ -94,5 +94,12 @@ document.querySelectorAll('.js-add-to-cart')
 
       // 13j. Use DOM to get the added messsage for the product.
       const addedMessage = document.querySelector(`.js-added-to-cart-${productId}`);
+
+      // 13k. Add class to the message element using .classList.add().
+      addedMessage.classList.add('added-to-cart-visible');
+
+      setTimeout(() => {
+        addedMessage.classList.remove('added-to-cart-visible');
+      }, 2000);
     });
 });

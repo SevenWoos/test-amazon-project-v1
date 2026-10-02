@@ -1,4 +1,4 @@
-const cart = [];
+import {cart} from '../data/cart.js';
 
 let productsHTML = '';
 

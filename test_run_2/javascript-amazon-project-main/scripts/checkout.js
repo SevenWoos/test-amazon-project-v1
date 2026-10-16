@@ -154,17 +154,24 @@ document.querySelectorAll('.js-save-link')
     saveLink.addEventListener('click', () => {
       const productId = saveLink.dataset.productId;
 
-      const container = document.querySelector(
-        `.js-cart-item-container-${productId}`
-      );
-      container.classList.remove('is-editing-quantity');
-
       const quantityInput = document.querySelector(
         `.js-quantity-input-${productId}`
       );
 
       const newQuantity = Number(quantityInput.value);
+
+      // 14n. Make sure new quantity is not less than 0 or greater than 1000.
+      if (newQuantity < 0 || newQuantity >= 1000) {
+        alert('Quantity must be at least 0 and less than 1000.');
+        return;
+      };
+
       updateQuantity(productId, newQuantity);
+
+      const container = document.querySelector(
+        `.js-cart-item-container-${productId}`
+      );
+      container.classList.remove('is-editing-quantity');
 
       // Update the HTML for the quantity labels.
       const quantityLabel = document.querySelector(

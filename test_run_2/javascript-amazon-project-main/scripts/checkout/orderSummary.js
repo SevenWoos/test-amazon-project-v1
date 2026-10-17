@@ -158,24 +158,11 @@ export function renderOrderSummary() {
   });
 
 
-  // Calculate cart quantity and display it in checkout.
-  function updateCartQuantity() {
-    // Calculate cart quantity and display it in checkout.
-    const cartQuantity = calculateCartQuantity();
-
-    document.querySelector('.js-return-to-home-link')
-      .innerHTML = `${cartQuantity} items`;
-  };
-
-  updateCartQuantity();
-
-
   // 14f. Get all "Update" links from page and add "click" event listener.
   document.querySelectorAll('.js-update-link')
     .forEach((updateLink) => {
       updateLink.addEventListener('click', () => {
         const productId = updateLink.dataset.productId;
-        console.log(productId);
 
         const container = document.querySelector(
           `.js-cart-item-container-${productId}`

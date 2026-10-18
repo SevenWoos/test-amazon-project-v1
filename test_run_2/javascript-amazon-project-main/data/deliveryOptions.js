@@ -33,6 +33,19 @@ export function getDeliveryOption(deliveryOptionId) {
 };  
 
 
+export function validDeliveryOption(deliveryOptionId) {
+  let found = false;
+
+  deliveryOptions.forEach((option) => {
+    if (option.id === deliveryOptionId) {
+      found = true;
+    };
+  });
+
+  return found;
+};
+
+
 // 15m. Exclude weekends(Saturday & Sunday) from delivery date calculation.
 function isWeekend(date) {
   const dayOfWeek = date.format('dddd');

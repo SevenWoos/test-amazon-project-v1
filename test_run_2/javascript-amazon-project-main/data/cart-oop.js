@@ -1,5 +1,6 @@
 import {validDeliveryOption} from './deliveryOptions.js';
 
+// OOP = organizes code into objects.
 // Function to generate cart objects.
 function Cart(localStorageKey) {
   // Creating a cart object.

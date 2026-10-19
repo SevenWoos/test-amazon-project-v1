@@ -5,18 +5,19 @@ import {validDeliveryOption} from './deliveryOptions.js';
 // Class = object generator.
 class Cart {
   cartItems;
-  localStorageKey;
+  // Private Property that can only be used inside this class.
+  #localStorageKey;
 
   // Constructor lets us run setup code inside class.
   // Has to be named "constructor".
   // Should NOT return anything.
   constructor(localStorageKey) {
-    this.localStorageKey = localStorageKey;
-    this.loadFromStorage();
+    this.#localStorageKey = localStorageKey;
+    this.#loadFromStorage();
   }
 
-  loadFromStorage() {
-    this.cartItems = JSON.parse(localStorage.getItem(this.localStorageKey)) ||
+  #loadFromStorage() {
+    this.cartItems = JSON.parse(localStorage.getItem(this.#localStorageKey)) ||
       [{
         productId: 'e43638ce-6aa0-4b85-b27f-e1d07eb678c6', 
 
@@ -36,7 +37,7 @@ class Cart {
 
 
   saveToStorage() {
-    localStorage.setItem(this.localStorageKey, JSON.stringify(this.cartItems));
+    localStorage.setItem(this.#localStorageKey, JSON.stringify(this.cartItems));
   }
 
 
@@ -145,3 +146,7 @@ console.log(businessCart);
 
 // Check if our instances were created from the Cart class.
 console.log(businessCart instanceof Cart);
+
+
+// Trying to access private properties.
+// cart.#localStorageKey = 'test';

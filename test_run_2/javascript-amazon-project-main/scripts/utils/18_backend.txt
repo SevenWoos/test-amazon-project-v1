@@ -26,7 +26,7 @@
 
 
 * After sending HTTPS request, open inspect element, then "Network" tab.
-  - "Headers" dropdown tell us the detaisla dn type of the request we sent.
+  - "Headers" dropdown tell us the details on type of the request we sent.
 
   - "Response" dropdown shows us the backend's response.
 
@@ -43,7 +43,7 @@
 
 * We can get the response back in our CODE, rather than use the "Network" tab.
   - Response is NOT available right away since it takes time to send data. So it will be undefined.
-    - xhr.send() is ASYNC CODE, so it won't wait for resposne before moving onto next line.
+    - xhr.send() is ASYNC CODE, so it won't wait for response before moving onto next line.
 
   - We need to WAIT for the response to come back.
 

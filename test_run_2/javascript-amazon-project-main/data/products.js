@@ -13,7 +13,7 @@ export function getProduct(productId) {
 };
 
 // Product class to generate products. We get access to class methods and class properties.
-class Product {
+export class Product {
   id; 
   image;
   name;
@@ -47,7 +47,7 @@ class Product {
 // EX: Clothing and Appliances are DIFFERENT TYPES of Product classes. More SPECIFIC.
 
 // Clothing class inherits from Product class.
-class Clothing extends Product {
+export class Clothing extends Product {
   sizeChartLink;
 
   constructor(productDetails) {
@@ -70,7 +70,7 @@ class Clothing extends Product {
   };
 };
 
-class Appliance extends Product {
+export class Appliance extends Product {
   instructionsLink;
   warrantyLink;
 

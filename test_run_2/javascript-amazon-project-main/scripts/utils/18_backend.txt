@@ -1,0 +1,360 @@
+# Lesson 18: Intro to Backend
+
+* Backend = another computer that manages the data of a website.
+  - EX: Amazon 
+    - Our computer(frontend webpage that sees and interact with products) communicates with a second computer owned by Amazon by sending the order info.
+    - Amazon computer(backend) manages data of website.
+
+* Messages can be sent between computers using HTTP(HyperText Transfer Protocol). 
+  - EX: HTTP message can attach info like Amazon orders.
+
+* Send a HTTP message using JavaScript. Use built-in class: XMLHttpRequest.
+  - EX: const xhr = new XMLHttpRequest();
+
+* To locate another computer on the Internet, we need a URL.
+
+* Uniform Resource Locator(URL) = address for the Internet, that helps us locate another computer. Starts with "https" then domain name.
+  - "https" in front means we're using HTTPS to communicate with this computer.
+
+  - 's' = secure version of HTTP.
+
+  - EX: https://amazon.com
+    - This points to ONE of Amazon's backend computers.
+
+* 2 parameters = type of HTTP message(GET, POST, PUT, DELETE), where to send HTTP message(URL address that helps locate another computer on the Internet).
+  - EX: xhr.open('GET', 'https://supersimplebackend.dev');
+
+
+* After sending HTTPS request, open inspect element, then "Network" tab.
+  - "Headers" dropdown tell us the detaisla dn type of the request we sent.
+
+  - "Response" dropdown shows us the backend's response.
+
+  - "Preview: dropdown takes the response and displays it in readable format.
+
+
+* Request-Response Cycle
+  - 1 request, 1 response.
+
+  - Our computer sends a message(REQUEST) to request something, to backend.
+
+  - When the backend receives our request, it will send a HTTP message back to us(RESPONSE).
+
+
+* We can get the response back in our CODE, rather than use the "Network" tab.
+  - Response is NOT available right away since it takes time to send data. So it will be undefined.
+    - xhr.send() is ASYNC CODE, so it won't wait for resposne before moving onto next line.
+
+  - We need to WAIT for the response to come back.
+
+  - Set up event listener FIRST, and then send the request.
+
+  - EX:
+    // Use this to WAIT for response to come back.
+    xhr.addEventListener('load', () => {
+      // Response is NOT available right away since it takes time to send data. So it will be undefined.
+      console.log(xhr.response);
+    });
+
+
+* We can send different messages/responses using DIFFERENT URL paths.
+  - EX: 'hello' at the end of url
+    - 'https://supersimplebackend.dev/hello'
+  
+  - EX: 'products/first' at the end of url
+    - 'https://supersimplebackend.dev/products/first'
+  
+
+* Backend only supports a certain SET of URL paths, when we build one.
+
+* Sending an unsupported URL path will lead to an error.
+  - backend-practice.js:25  GET https://supersimplebackend.dev/not-supported 404 (Not Found)
+
+  - EX: xhr.open('GET', 'https://supersimplebackend.dev/not-supported');
+
+* Status code that starts with '4' or '5' = FAILED RESPONSE.
+  - '4' = OUR problem, we sent the request to an unsupported URL path.
+
+  - '5' = BACKEND's problem. Maybe backend crashed.
+
+* Status code that starts with '2' = SUCCESSFUL.
+
+* Can also find status code in "Console" --> "Network" --> "Headers".
+
+
+* Some backends provide a documentation page on which URL paths are SUPPORTED(Backend API).
+
+* Backend can response with DIFFERENT types of data.
+  - "Console" --> "Network" --> "Headers" --> "Response Headers" --> "Content-Type"
+
+  - Text
+    - EX: xhr.open('GET', 'https://supersimplebackend.dev/hello');
+
+  - JSON. Can use JSON .parse to convert back to JavaScript objects.
+    - EX: xhr.open('GET', 'https://supersimplebackend.dev/products/first');
+
+  - HTML
+    - EX: xhr.open('GET', 'https://supersimplebackend.dev/documentation');
+
+  -Images
+    - EX: xhr.open('GET', 'https://supersimplebackend.dev/images/apple.jpg');
+
+
+* When we type a URL in our browser, it sends a GET request to that URL.
+  - Displays response on page, like images.
+
+* Callback = function to run in the future. 
+  - Allows us to wait for HTTP request to finish first, and for response to come back.
+
+* Using an Anonymous Function as a callback.
+  - Anonymous Function = a function without a name.
+
+  - EX:
+    loadProducts(() => {
+      renderCheckoutHeader();
+      renderOrderSummary();
+      renderPaymentSummary();
+    });
+
+* beforeAll() hook runs code before everything else.
+
+* done() function = function in Jasmine that waits for some code to finish. Lets us control when we go to the next step.
+  - EX:
+    beforeAll((done) => {
+      loadProducts(() => {
+        done();
+      });
+    });
+
+* Promises = better way to handle asynchronous code. Similar to done(). Lets us wait for code to finish before moving to next step. Helps avoid nesting and keeps code flat.
+  - Has parameter "resolve"
+
+  - "resolve" is a function, similar to Jasmine's done() function. It lets us control when to go to the next step.
+
+  - EX: ('start promise' --> 'load products' --> 'finish loading' --> 'next step')
+    new Promise((resolve) => {
+      console.log('start promise');
+      loadProducts(() => {
+        // resolve parameter = function that lets us control when to go to the next step.
+        console.log('finish loading');
+        resolve();
+      });
+    }).then(() => {
+      console.log('next step');
+    });
+
+  
+  - EX: (Loading the products from backend with promise)
+    new Promise((resolve) => {
+      loadProducts(() => {
+        resolve();
+      });
+    }).then(() => {
+      renderCheckoutHeader();
+      renderOrderSummary();
+      renderPaymentSummary();
+    });
+
+
+* Multiple callbacks = a lot of nesting(code inside code).
+
+
+* promise.all() lets us run multiple promises at the SAME TIME, and wait for all of them to finish. Use an array of promises.
+  - EX: 
+    Promise.all([
+      new Promise((resolve) => {
+        loadProducts(() => {
+          resolve('value1');
+        });
+      }), 
+
+      new Promise((resolve) => {
+        loadCart(() => {
+          resolve();
+        });
+      })
+
+    ]).then(() => {
+      renderCheckoutHeader();
+      renderOrderSummary();
+      renderPaymentSummary();
+    });
+
+
+* fetch() makes HTTP request. Default is GET. Returns a promise directly.
+  - Uses promsie to get response instead of a callback.
+
+
+* Async Await = Shortcut for Promises.
+  - Async makes a function return a promise.
+
+  - EX: ('load page' --> 'next step' --> 'value2')
+    // Async Await = Shortcut for Promises.
+    // Async makes a function return a promise.
+    async function loadPage() {
+      console.log('load page');
+      return 'value2';
+    };
+    loadPage().then((value) => {
+      console.log('next step');
+      console.log(value);
+    });
+
+* Old way of waiting for a promise to finish.
+  - EX: 
+      loadProductsFetch().then(() => {
+        console.log('finish loading products');
+      });
+
+* Use AWAIT.
+
+* Await lets you write async code like normal code. Can only be used inside ASYNC function and on PROMISES.
+  - EX ('load page' --> 'load products' --> 'next step' --> 'value2):
+    async function loadPage() {
+      console.log('load page');
+      // Await lets you write async code like normal code. Can only be used inside async function and on PROMISES.
+      await loadProductsFetch();
+      return 'value2';
+    };
+    loadPage().then((value) => {
+      console.log('next step');
+      console.log(value);
+    });
+
+* Async Await Example('load products' --> 'load cart')
+    async function loadPage() {
+      // Await lets you write async code like normal code. Can only be used inside async function and on PROMISES.
+      await loadProductsFetch();
+
+      // Load cart
+      await new Promise((resolve) => {
+        loadCart(() => {
+          resolve();
+        });
+      });
+
+      // Render page after loading products and cart.
+      renderCheckoutHeader();
+      renderOrderSummary();
+      renderPaymentSummary();
+
+    };
+    loadPage();
+
+* CANNOT use await in an INNER FUNCTION.
+  - EX:
+    async function outerFunction() {
+      console.log('hello');
+
+      // innerFunction has to be made "async"
+      function innerFunction() {
+        await loadProductsFetch();
+      };
+    };
+
+* Error Handling = when sending HTTP requests, we could get unexpected errors.
+  - Use catch for error handling.
+
+  - EX:
+    export function loadProducts(fun) {
+      const xhr = new XMLHttpRequest();
+
+      xhr.addEventListener('load', () => {
+        products = JSON.parse(xhr.response).map((productDetails) => {
+        if (productDetails.type === 'clothing') {
+          return new Clothing(productDetails);
+        } else if(productDetails.type === 'appliance') {
+          return new Appliance(productDetails);
+        };
+
+        return new Product(productDetails);
+        });
+
+        console.log('load products');
+
+        // Wait for HTTP request to finish and then run callback function to render products.
+        // Callback = function to run in the future.
+        fun();
+
+        // Setup a separate callback for error handling.
+        xhr.addEventListener('error', (error) => {
+          console.log('Unexpected error. Please try again later.');
+        });
+      });
+
+      xhr.open('GET', 'https://error.supersimplebackend.dev/products');
+      xhr.send();
+    };
+    loadProducts();
+
+
+* Try and catch for error handling. Can be used in normal code and async code.
+
+* Try contains code that could cause an error.
+
+* Catch catches and handles error.
+
+* try and catch Example 
+  - EX: 
+      async function loadPage() {
+        // Try and catch for error handling.
+        // Try contains code that could cause an error.
+      try {
+        // throw() manually creates an error. Value gets saved in catch() parameter.
+        // throw 'error1';
+
+        await loadProductsFetch();
+
+        // Load cart
+        const value = await new Promise((resolve) => {
+          loadCart(() => {
+            resolve('value3');
+          });
+        });
+
+        // Catches and handles error.
+      } catch (error) {
+        console.log('Unexpected error. Please try again later.');
+      };
+        // Render page after loading products and cart.
+        renderCheckoutHeader();
+        renderOrderSummary();
+        renderPaymentSummary();
+
+      };
+      loadPage();
+
+* reject() parameter in Promise lets you create an error in the future.
+
+  - EX:
+      async function loadPage() {
+      try {
+        // throw() manually creates an error. Value gets saved in catch() parameter.
+        // throw 'error1';
+
+        await loadProductsFetch();
+
+        // Load cart
+        // reject() parameter in Promise lets you create an error in the future.
+        const value = await new Promise((resolve, reject) => {
+          // throw 'error2';
+          loadCart(() => {
+            reject('error3');
+            // resolve('value3');
+          });
+        });
+
+      } catch (error) {
+        console.log('Unexpected error. Please try again later.');
+      };
+
+        // Render page after loading products and cart.
+        renderCheckoutHeader();
+        renderOrderSummary();
+        renderPaymentSummary();
+
+      };
+      loadPage();
+
+
+* 

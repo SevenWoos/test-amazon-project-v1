@@ -1,6 +1,10 @@
 class Car {
   #brand;
   #model;
+  // Private properties CANNOT be accessed in child class.
+  // Notice this doesn't work becasue RaceCar canNOT access private #speed property.
+  // #speed = 0;
+
   speed = 0;
   isTrunkOpen = false;
 

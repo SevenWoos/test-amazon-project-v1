@@ -2,7 +2,7 @@ import {getProduct, loadProductsFetch} from '../data/products.js';
 import {orders} from '../data/orders.js';
 import dayjs from 'https://unpkg.com/supersimpledev@8.5.0/dayjs/esm/index.js';
 import {formatCurrency} from './utils/money.js';
-import {addToCart, cart} from '../data/cart.js';
+import {addToCart, cart, calculateCartQuantity} from '../data/cart.js';
 
 
 console.log(orders);
@@ -104,5 +104,12 @@ async function loadPage() {
     });
   });
 };
-
+updateCartQuantity();
 loadPage();
+
+export function updateCartQuantity() {
+  const cartQuantity = calculateCartQuantity();
+  
+  document.querySelector('.js-cart-quantity')
+    .innerHTML = cartQuantity;
+};

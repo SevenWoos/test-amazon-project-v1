@@ -1,4 +1,4 @@
-import {cart} from '../../data/cart.js';
+import {cart, resetCart} from '../../data/cart.js';
 import {getProduct} from '../../data/products.js';
 import {getDeliveryOption} from '../../data/deliveryOptions.js';
 import {formatCurrency} from '../utils/money.js';
@@ -97,6 +97,9 @@ export function renderPaymentSummary() {
       } catch (error) {
         console.log('Unexpected error. Try again later.');
       };
+
+      // Empty cart after creating an order.
+      resetCart();
 
       // After creating an order, we navigate to the "orders" page.
       // window.location object that lets you control the URL in the browser using a file path.

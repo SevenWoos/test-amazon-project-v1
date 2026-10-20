@@ -12,20 +12,12 @@ import {loadCart, loadCartFetch} from '../data/cart.js';
 async function loadPage() {
   try {
     // Await lets you write async code like normal code. Can only be used inside async function and on PROMISES.
-    await loadProductsFetch();
 
-    /*
-    const value = await new Promise((resolve, reject) => {
-      // throw 'error2';
-      loadCart(() => {
-        // reject('error3');
-        resolve('value3');
-      });
-    });
-    */
-
-    // 18h. Use async version of loadCart()
-    await loadCartFetch();
+    // 18i. Use Promise.all to run both fetch functions.
+    await Promise.all([
+      loadProductsFetch(),
+      loadCartFetch()
+    ]);
 
     // Catches and handles error.
   } catch (error) {

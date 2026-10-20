@@ -357,4 +357,27 @@
       loadPage();
 
 
+* URL parameters = lets us save data directly in the URL.
+  - EX:
+    - tracking.html?orderId=123
+
+    - '?' means we're adding a URL parameter to the URL. Followed by the property then value.
+
+    - Can use JavaScript to get data out of URL.
+
+* EX: Using searchParams.
+  - <script>
+      // Get parameters out of URL with built-in function URL.
+      const url = new URL(window.location.href);
+
+      // Get URL Parameters to save data(search parameters).
+      console.log(url.searchParams.get('orderId'));
+    </script>
+
+* EX: '/tracking.html?orderId=123&productId=456'
+  - // Get URL Parameters to save data(search parameters).
+      console.log(url.searchParams.get('orderId'));
+      console.log(url.searchParams.get('productId'));
+
+
 * 

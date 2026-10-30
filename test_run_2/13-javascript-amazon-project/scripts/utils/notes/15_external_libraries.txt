@@ -59,10 +59,11 @@
   - EX: localStorage.clear();
 
 
-* Model-View-Controller (MVC): method where we update the data and then regenerate all the HTML. Design pattern.
+* Model-View-Controller (MVC): method where we update the data and then regenerate all the HTML. Design pattern. Design Pattern.
   - Many JavaScript frameworks are based on MVC.
   
   - Model = saves and manages the data.
+    - EX: code in our 'data' folders.
 
   - View = takes the data and displays it on the page.
     - EX: code that takes our data and generates the HTML.

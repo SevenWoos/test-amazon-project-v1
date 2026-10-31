@@ -187,7 +187,12 @@ export function renderOrderSummary() {
         );
         quantityLabel.innerHTML = newQuantity;
 
-        updateCartQuantity();
+        // updateCartQuantity();
+
+        // 15n. Use MVC to update page when updating and saving the quantity in the checkout page.
+        renderCheckoutHeader();
+        renderOrderSummary();
+        renderPaymentSummary();
       });
   });
 

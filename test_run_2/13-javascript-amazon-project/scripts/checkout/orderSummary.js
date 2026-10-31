@@ -85,9 +85,7 @@ export function renderOrderSummary() {
         'days'
       );
 
-      const dateString = deliveryDate.format(
-        'dddd, MMMM D'
-      );
+      const dateString = calculateDeliveryDate(deliveryOption);
 
       const priceString = deliveryOption.priceCents === 0 
         ? 'FREE'

@@ -1,0 +1,30 @@
+# Lesson 16: Testing
+
+* Automated Testing = using code to test code. No manual testing needed.
+
+* Generally we create 2 types of test cases.
+  - Basic Test Cases = checks that the code is working.
+
+  - Edge Cases = test code with tricky values and scenarios on the EDGE of what our code can handle.
+
+* Test Suite = group of RELATED tests.
+
+* Testing Framework = external library that helps us write tests easier.
+  - EX: Jasmine
+
+* Jasmine Testing Framework.
+  - https://jasmine.github.io/api/5.1/global
+
+  - SpecRunner.html loads all of the tests.
+
+* Mocks = lets you replace method with a fake version. Use spyOn.
+
+  - EX: Mock 'setItem' so our specs do not affect the actual 'cart'.
+    - spyOn(localStorage, 'setItem');
+
+* Unit Test = tests 1 piece of the code.
+
+* Integration Test = tests many units/pieces of code working together.
+
+* Hooks = lets us run some code for each test.
+  - beforeEach hook runs a function before each spec.

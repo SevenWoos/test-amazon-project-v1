@@ -1,5 +1,6 @@
 import {renderPaymentSummary} from '../../scripts/checkout/paymentSummary.js';
 import {loadFromStorage, cart} from '../../data/cart.js';
+import {loadProductsFetch} from '../../data/products.js';
 
 
 describe('test suite: renderPaymentSummary', () => {
@@ -7,6 +8,13 @@ describe('test suite: renderPaymentSummary', () => {
   const productId2 = '15b6fc6f-327a-4ec4-896f-486349e85a3d';
   const productId3 = '54e0eccd-8f36-462b-b68a-8182611d9add';
   const productId4 = 'dd82ca78-a18b-4e2a-9250-31e67412f98d';
+
+  // beforeAll hook.
+  beforeAll((done) => {
+    loadProductsFetch().then(() => {
+      done();
+    });
+  });
 
   beforeEach(() => {
     spyOn(localStorage, 'setItem');

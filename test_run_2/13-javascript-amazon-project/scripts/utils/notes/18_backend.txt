@@ -157,6 +157,33 @@
 
 
 * Multiple callbacks = a lot of nesting(code inside code).
+  - EX:
+      loadProducts(() => {
+        loadCart(() => {
+          renderCheckoutHeader();
+          renderOrderSummary();
+          renderPaymentSummary();
+        });
+      });
+
+
+* Using promises to run our 3 steps instead of callbacks.
+  - EX:
+    new Promise((resolve) => {
+      loadProducts(() => {
+        resolve();
+      });
+    }).then(() => {
+      return new Promise((resolve) => {
+        loadCart(() => {
+          resolve();
+        });
+      });
+    }).then(() => {
+      renderCheckoutHeader();
+      renderOrderSummary();
+      renderPaymentSummary();
+    });
 
 
 * promise.all() lets us run multiple promises at the SAME TIME, and wait for all of them to finish. Use an array of promises.

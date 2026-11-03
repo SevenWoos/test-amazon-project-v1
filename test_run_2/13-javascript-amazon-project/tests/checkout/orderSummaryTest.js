@@ -8,6 +8,7 @@ describe('test suite: renderOrderSummary', () => {
   const productId1 = 'e43638ce-6aa0-4b85-b27f-e1d07eb678c6';
   const productId2 = '15b6fc6f-327a-4ec4-896f-486349e85a3d';
 
+  /*
   // beforeAll hook.
   beforeAll((done) => {
     // Need loadProducts() to finish running before we continue with rest of code. Use done function so it WAITS before we go to the next step.
@@ -15,6 +16,14 @@ describe('test suite: renderOrderSummary', () => {
       done();
     });
   });
+  */
+
+
+  // 18j. Use async and await for loadProductsFetch().
+  beforeAll(async () => {
+    await loadProductsFetch();
+  });
+
 
   // beforeEach hook runs a function before each spec.
   beforeEach(() => {
